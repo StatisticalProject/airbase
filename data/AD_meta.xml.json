@@ -1,0 +1,339 @@
+{
+    "airbase": {
+        "@{http://www.w3.org/2001/XMLSchema-instance}noNamespaceSchemaLocation": "http://acm.eionet.europa.eu/schemas/airbase/airbase20100623.xsd",
+        "country": {
+            "country_eu_member": "N",
+            "country_iso_code": "AD",
+            "country_name": "Andorra",
+            "network": {
+                "network_code": "AD001A",
+                "network_data_supplier": {
+                    "organization": {
+                        "organization_address": "c Prat de la Creu, 62-64  Andorra la Vella  Principat d''Andorra",
+                        "organization_city": "ndorra la Vella              h",
+                        "organization_fax_number": "(+376) 869.833",
+                        "organization_name": "Unitat de Medi Atmosf\u00e8ric",
+                        "organization_phone_number": "(+376) 875.707",
+                        "organization_website_address": "ttp://www.mediambient.ad"
+                    },
+                    "person": {
+                        "person_email_address": "unitat_medi_atmosferic@govern.ad",
+                        "person_first_name": "Antoni",
+                        "person_last_name": "Vila Mur"
+                    }
+                },
+                "network_manager": {
+                    "organization": {
+                        "organization_address": "c Prat de la Creu, 62-64  Andorra la Vella  Principat d''Andorra",
+                        "organization_city": "ndorra la Vella              h",
+                        "organization_fax_number": "(+376) 869.833",
+                        "organization_name": "Unitat de Medi Atmosf\u00e8ric",
+                        "organization_phone_number": "(+376) 875.707",
+                        "organization_website_address": "ttp://www.mediambient.ad"
+                    },
+                    "person": {
+                        "person_email_address": "unitat_medi_atmosferic@govern.ad",
+                        "person_first_name": "Marc",
+                        "person_last_name": "ROSSELL SOLER"
+                    }
+                },
+                "network_name": "Govern d'Andorra (Unitat Medi Atmosf\u00e8ric, department Medi Ambient)",
+                "network_short_name": "GOVANDORRA",
+                "network_start_date": "1990-01-01",
+                "network_time_reference_basis": "CET",
+                "network_type": "national"
+            },
+            "station": [
+                {
+                    "@Id": "AD0944A:Engolasters",
+                    "measurement_configuration": {
+                        "@component": "Ozone (air) - Ultraviolet (UV) photometry",
+                        "component_FWD": "yes",
+                        "component_caption": "O3",
+                        "component_code": "7",
+                        "component_name": "Ozone (air)",
+                        "measurement_european_group_code": "100",
+                        "measurement_group_start_date": "2006-02-10",
+                        "measurement_info": {
+                            "@current_since": "2006-02-10",
+                            "height_sampling_point": "0",
+                            "length_sampling_line": "0",
+                            "measurement_automatic": "yes",
+                            "measurement_equipment": "Teledyne API 400E UV photometric O3 analyser",
+                            "measurement_european_code": "100",
+                            "measurement_start_date": "2006-02-10",
+                            "measurement_technique_principle": "Ultraviolet (UV) photometry",
+                            "sampling_time": "0"
+                        },
+                        "measurement_unit": "\u00b5g/m3"
+                    },
+                    "network_info": {
+                        "network_code": "AD001A",
+                        "network_time_reference_basis": "CET"
+                    },
+                    "station_european_code": "AD0944A",
+                    "station_info": {
+                        "EMEP_station": "no",
+                        "meteorological_parameter": [
+                            {
+                                "#text": "Wind direction",
+                                "@code": "52"
+                            },
+                            {
+                                "#text": "Temperature",
+                                "@code": "54"
+                            }
+                        ],
+                        "sabe_country_code": "AD",
+                        "sabe_unit_code": "AD",
+                        "sabe_unit_name": "Andorra",
+                        "station_airbase_code": "AD0944A",
+                        "station_altitude": "1637",
+                        "station_latitude_decimal_degrees": "42.516945",
+                        "station_latitude_dms": "+042\u00b031'01.00\"",
+                        "station_local_code": "944",
+                        "station_longitude_decimal_degrees": "1.565014",
+                        "station_longitude_dms": "+001\u00b033'54.05\"",
+                        "station_name": "Engolasters",
+                        "station_nuts_level0": "AD",
+                        "station_nuts_level1": "-",
+                        "station_nuts_level2": "-",
+                        "station_nuts_level3": "-",
+                        "station_start_date": "2006-02-10",
+                        "station_type_of_area": "rural",
+                        "type_of_station": "Background"
+                    }
+                },
+                {
+                    "@Id": "AD0945A:Envalira",
+                    "measurement_configuration": {
+                        "@component": "Ozone (air) - Ultraviolet (UV) photometry",
+                        "component_FWD": "yes",
+                        "component_caption": "O3",
+                        "component_code": "7",
+                        "component_name": "Ozone (air)",
+                        "measurement_european_group_code": "100",
+                        "measurement_group_start_date": "2011-05-01",
+                        "measurement_info": {
+                            "@current_since": "2011-05-01",
+                            "body_or_programme": "EU EoI",
+                            "height_sampling_point": "0",
+                            "length_sampling_line": "0",
+                            "measurement_automatic": "yes",
+                            "measurement_equipment": "Teledyne API 400E UV photometric O3 analyser",
+                            "measurement_european_code": "100",
+                            "measurement_start_date": "2011-05-01",
+                            "measurement_technique_principle": "Ultraviolet (UV) photometry",
+                            "sampling_time": "0"
+                        },
+                        "measurement_unit": "\u00b5g/m3"
+                    },
+                    "network_info": {
+                        "network_code": "AD001A",
+                        "network_time_reference_basis": "CET"
+                    },
+                    "station_european_code": "AD0945A",
+                    "station_info": {
+                        "EMEP_station": "no",
+                        "meteorological_parameter": {
+                            "#text": "No meteo measured",
+                            "@code": "99"
+                        },
+                        "sabe_country_code": "AD",
+                        "sabe_unit_code": "AD",
+                        "sabe_unit_name": "Andorra",
+                        "station_airbase_code": "AD0945A",
+                        "station_altitude": "2515",
+                        "station_latitude_decimal_degrees": "42.534882",
+                        "station_latitude_dms": "+042\u00b032'05.58\"",
+                        "station_local_code": "945",
+                        "station_longitude_decimal_degrees": "1.716986",
+                        "station_longitude_dms": "+001\u00b043'01.15\"",
+                        "station_name": "Envalira",
+                        "station_nuts_level0": "AD",
+                        "station_nuts_level1": "-",
+                        "station_nuts_level2": "-",
+                        "station_nuts_level3": "-",
+                        "station_start_date": "2011-05-01",
+                        "station_type_of_area": "rural",
+                        "type_of_station": "Background"
+                    }
+                },
+                {
+                    "@Id": "AD0942A:Escaldes-Engordany",
+                    "measurement_configuration": [
+                        {
+                            "@component": "Sulphur dioxide (air) - Ultraviolet (UV) photometry",
+                            "component_FWD": "yes",
+                            "component_caption": "SO2",
+                            "component_code": "1",
+                            "component_name": "Sulphur dioxide (air)",
+                            "measurement_european_group_code": "100",
+                            "measurement_group_start_date": "2004-06-17",
+                            "measurement_info": {
+                                "@current_since": "2004-06-17",
+                                "body_or_programme": "EU EoI",
+                                "height_sampling_point": "0",
+                                "length_sampling_line": "0",
+                                "measurement_automatic": "yes",
+                                "measurement_equipment": "Teledyne API 100E UV Fluorescent SO2 Analyser",
+                                "measurement_european_code": "100",
+                                "measurement_start_date": "2004-06-17",
+                                "measurement_technique_principle": "Ultraviolet (UV) photometry",
+                                "sampling_time": "0"
+                            },
+                            "measurement_unit": "\u00b5g/m3"
+                        },
+                        {
+                            "@component": "Particulate matter < 10 \u00b5m (aerosol) - Tapered Element Oscillating Microbalance (TEOM)",
+                            "component_FWD": "yes",
+                            "component_caption": "PM10",
+                            "component_code": "5",
+                            "component_name": "Particulate matter < 10 \u00b5m (aerosol)",
+                            "measurement_european_group_code": "100",
+                            "measurement_group_start_date": "2004-06-17",
+                            "measurement_info": {
+                                "@current_since": "2004-06-17",
+                                "body_or_programme": "EU EoI",
+                                "height_sampling_point": "0",
+                                "length_sampling_line": "0",
+                                "measurement_automatic": "yes",
+                                "measurement_equipment": "TEOM 1400",
+                                "measurement_european_code": "100",
+                                "measurement_start_date": "2004-06-17",
+                                "measurement_technique_principle": "Tapered Element Oscillating Microbalance (TEOM)",
+                                "sampling_time": "0"
+                            },
+                            "measurement_unit": "\u00b5g/m3"
+                        },
+                        {
+                            "@component": "Ozone (air) - Ultraviolet (UV) photometry",
+                            "component_FWD": "yes",
+                            "component_caption": "O3",
+                            "component_code": "7",
+                            "component_name": "Ozone (air)",
+                            "measurement_european_group_code": "100",
+                            "measurement_group_start_date": "2004-06-17",
+                            "measurement_info": {
+                                "@current_since": "2004-06-17",
+                                "height_sampling_point": "0",
+                                "length_sampling_line": "0",
+                                "measurement_automatic": "yes",
+                                "measurement_equipment": "Teledyne API 400E UV photometric O3 analyser",
+                                "measurement_european_code": "100",
+                                "measurement_start_date": "2004-06-17",
+                                "measurement_technique_principle": "Ultraviolet (UV) photometry",
+                                "sampling_time": "0"
+                            },
+                            "measurement_unit": "\u00b5g/m3"
+                        },
+                        {
+                            "@component": "Nitrogen oxides (air) - Ultraviolet (UV) photometry",
+                            "component_FWD": "yes",
+                            "component_caption": "NOX",
+                            "component_code": "9",
+                            "component_name": "Nitrogen oxides (air)",
+                            "measurement_european_group_code": "100",
+                            "measurement_group_start_date": "2004-06-17",
+                            "measurement_info": {
+                                "@current_since": "2004-06-17",
+                                "body_or_programme": "EU EoI",
+                                "height_sampling_point": "0",
+                                "length_sampling_line": "0",
+                                "measurement_automatic": "yes",
+                                "measurement_equipment": "Teledyne API 200E chemiluminescent NOx analyser",
+                                "measurement_european_code": "100",
+                                "measurement_start_date": "2004-06-17",
+                                "measurement_technique_principle": "Ultraviolet (UV) photometry",
+                                "sampling_time": "0"
+                            },
+                            "measurement_unit": "\u00b5g NO2/m3"
+                        },
+                        {
+                            "@component": "Carbon monoxide (air) - Infrared gas filter correlation",
+                            "component_FWD": "yes",
+                            "component_caption": "CO",
+                            "component_code": "10",
+                            "component_name": "Carbon monoxide (air)",
+                            "measurement_european_group_code": "100",
+                            "measurement_group_start_date": "2004-06-17",
+                            "measurement_info": {
+                                "@current_since": "2004-06-17",
+                                "body_or_programme": "EU EoI",
+                                "height_sampling_point": "0",
+                                "length_sampling_line": "0",
+                                "measurement_automatic": "yes",
+                                "measurement_equipment": "Teledyne API 300E gas filter correlation CO analyser",
+                                "measurement_european_code": "100",
+                                "measurement_start_date": "2004-06-17",
+                                "measurement_technique_principle": "Infrared gas filter correlation",
+                                "sampling_time": "0"
+                            },
+                            "measurement_unit": "mg/m3"
+                        },
+                        {
+                            "@component": "Particulate matter < 2.5 \u00b5m (aerosol) - Tapered Element Oscillating Microbalance (TEOM)",
+                            "component_FWD": "yes",
+                            "component_caption": "PM2.5",
+                            "component_code": "6001",
+                            "component_name": "Particulate matter < 2.5 \u00b5m (aerosol)",
+                            "measurement_european_group_code": "100",
+                            "measurement_group_start_date": "2008-12-01",
+                            "measurement_info": {
+                                "@current_since": "2008-12-01",
+                                "body_or_programme": "EU EoI",
+                                "height_sampling_point": "0",
+                                "length_sampling_line": "0",
+                                "measurement_automatic": "yes",
+                                "measurement_equipment": "TEOM 1400",
+                                "measurement_european_code": "100",
+                                "measurement_start_date": "2008-12-01",
+                                "measurement_technique_principle": "Tapered Element Oscillating Microbalance (TEOM)",
+                                "sampling_time": "0"
+                            },
+                            "measurement_unit": "\u00b5g/m3"
+                        }
+                    ],
+                    "network_info": {
+                        "network_code": "AD001A",
+                        "network_time_reference_basis": "CET"
+                    },
+                    "station_european_code": "AD0942A",
+                    "station_info": {
+                        "EMEP_station": "no",
+                        "meteorological_parameter": [
+                            {
+                                "#text": "Wind direction",
+                                "@code": "52"
+                            },
+                            {
+                                "#text": "Temperature",
+                                "@code": "54"
+                            }
+                        ],
+                        "population": "22.000",
+                        "sabe_country_code": "AD",
+                        "sabe_unit_code": "AD",
+                        "sabe_unit_name": "Andorra",
+                        "station_airbase_code": "AD0942A",
+                        "station_altitude": "1080",
+                        "station_city": "ANDORRA LA VELLA",
+                        "station_latitude_decimal_degrees": "42.509724",
+                        "station_latitude_dms": "+042\u00b030'35.00\"",
+                        "station_local_code": "942",
+                        "station_longitude_decimal_degrees": "1.539172",
+                        "station_longitude_dms": "+001\u00b032'21.02\"",
+                        "station_name": "Escaldes-Engordany",
+                        "station_nuts_level0": "AD",
+                        "station_nuts_level1": "-",
+                        "station_nuts_level2": "-",
+                        "station_nuts_level3": "-",
+                        "station_start_date": "2004-06-17",
+                        "station_type_of_area": "urban",
+                        "type_of_station": "Background"
+                    }
+                }
+            ]
+        }
+    }
+}
