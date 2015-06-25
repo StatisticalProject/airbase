@@ -38,9 +38,12 @@ rethinkdb import -f data/SK_meta.xml.json --table test.users --force
 rethinkdb import -f data/TR_meta.xml.json --table test.users --force
 rethinkdb import -f data/XK_meta.xml.json --table test.users --force
 
-rethinkdb import -f data/GB_meta.xml.json --table test.users --force
-rethinkdb import -f data/AT_meta.xml.json --table test.users --force
-rethinkdb import -f data/FR_meta.xml.json --table test.users --force
-rethinkdb import -f data/IT_meta.xml.json --table test.users --force
-rethinkdb import -f data/ES_meta.xml.json --table test.users --force
-rethinkdb import -f data/DE_meta.xml.json --table test.users --force
+rethinkdb import -f data/GB_meta.xml.json --table test.users --force --change-read-chunk-size=5120000 --change-max-buffer-size=934217728
+rethinkdb import -f data/AT_meta.xml.json --table test.users --force --change-read-chunk-size=5120000 --change-max-buffer-size=934217728
+rethinkdb import -f data/FR_meta.xml.json --table test.users --force --change-read-chunk-size=5120000 --change-max-buffer-size=934217728
+rethinkdb import -f data/IT_meta.xml.json --table test.users --force --change-read-chunk-size=5120000 --change-max-buffer-size=934217728
+rethinkdb import -f data/ES_meta.xml.json --table test.users --force --change-read-chunk-size=5120000 --change-max-buffer-size=934217728
+rethinkdb import -f data/DE_meta.xml.json --table test.users --force --change-read-chunk-size=5120000 --change-max-buffer-size=934217728
+
+
+
