@@ -32,13 +32,9 @@ var measures=r.table('users').concatMap(function ( doc) {
 
 r.table('measures').insert(measures,{conflict:'replace'});
 
-var stats=r.table('measures').filter(function (doc){return doc('measure').hasFields('statistics');}).map(function ( doc) {
-                          return
-                            doc.getField('measure').do(function (oo){return oo.do(function (dd){return dd.merge({idStation:doc('id'),latitude:doc('latitude').coerceTo('number'),longitude:doc('longitude').coerceTo('number')})})})
-                          ;
-                        }).concatMap(function (comp){
-            return comp.pluck('statistics','idStation','component_caption','latitude','longitude').coerceTo('array');
-          });
+var stats=r.table('measures').coerceTo('array').concatMap(function(measure){ return measure('measure').map(function(compl){ return compl.merge(measure.without('measure'))});}).coerceTo('array').filter(function (doc){return doc.hasFields('statistics')}).concatMap(function (configMeasure){ 
+  return configMeasure('statistics').coerceTo('array').filter(function (year){return year.typeOf().eq('OBJECT');}).map(function (stat){return {id:configMeasure('id').add('-').add(stat('@Year')),st:stat,con:configMeasure.without('statistics')};});
+});
 
 r.table('stats').insert(stats,{conflict:'replace'});
 
