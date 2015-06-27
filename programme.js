@@ -166,5 +166,7 @@ var stats=r.table('measures').filter(function (doc){return doc('measure').hasFie
 stats.coerceTo('array').map(function(forId){return forId.merge({id:forId('idStation').add(' - ').add(forId('component_caption'))});}).limit(10);
 
 
-Map reduce compte les mesures
+Map reduce compte les mesures par type
 r.table('stats').coerceTo('array')('con').group('component_caption').map( function (t){return 1;}).reduce(function (a,b){return a.add(b);})
+compte les mesures par stations
+r.table('stats').coerceTo('array')('con').eqJoin("id", r.table("stations"))('right').group('station_european_code').count();
