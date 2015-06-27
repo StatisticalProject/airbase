@@ -12,6 +12,7 @@ r.tableCreate('stats');
 var countries=r.table('users').map(function ( doc) {
   return {id: doc('airbase').getField('country').getField('country_iso_code'),country:doc('airbase').getField('country').without('station')};
 });
+r.table('countries').insert(countries,{conflict:'replace'});
 
 
 var stations=r.table('users').concatMap(function ( doc) {
@@ -20,16 +21,15 @@ var stations=r.table('users').concatMap(function ( doc) {
                                                                                                     });
              });
 
+r.table('stations').insert(stations,{conflict:'replace'});
+
+
 var measures=r.table('users').concatMap(function ( doc) {
   return doc('airbase')('country')('station').filter(function (row ){return row.hasFields('measurement_configuration')}).map(function(station) {
     return {id:station('@Id'),latitude:station('station_info')('station_latitude_decimal_degrees'),longitude:station('station_info')('station_longitude_decimal_degrees'),measure:station('measurement_configuration')};
 });
 });
 
-
-
-r.table('countries').insert(countries,{conflict:'replace'});
-r.table('stations').insert(stations,{conflict:'replace'});
 r.table('measures').insert(measures,{conflict:'replace'});
 
 var stats=r.table('measures').filter(function (doc){return doc('measure').hasFields('statistics');}).map(function ( doc) {
