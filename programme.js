@@ -170,3 +170,5 @@ Map reduce compte les mesures par type
 r.table('stats').coerceTo('array')('con').group('component_caption').map( function (t){return 1;}).reduce(function (a,b){return a.add(b);})
 compte les mesures par stations
 r.table('stats').coerceTo('array')('con').eqJoin("id", r.table("stations"))('right').group('station_european_code').count();
+par pays
+r.table('stats').coerceTo('array')('con').eqJoin("id", r.table("stations"))('right').map(function (po){return po.merge({station_european_code:po('station_european_code').coerceTo('binary').slice(0,2).coerceTo('string')})}).group('station_european_code').count()
