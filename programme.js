@@ -164,3 +164,7 @@ var stats=r.table('measures').filter(function (doc){return doc('measure').hasFie
   return comp.pluck('statistics','idStation','component_caption','latitude','longitude').coerceTo('array');
           });
 stats.coerceTo('array').map(function(forId){return forId.merge({id:forId('idStation').add(' - ').add(forId('component_caption'))});}).limit(10);
+
+
+Map reduce compte les mesures
+r.table('stats').coerceTo('array')('con').group('component_caption').map( function (t){return 1;}).reduce(function (a,b){return a.add(b);})
