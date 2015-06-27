@@ -161,3 +161,11 @@ r.table('measures').filter(function (doc){return doc('measure').hasFields('stati
   map(function (doc){
   return {statistic:doc('statistics'),idStation:('idStation'),component_caption:doc('component_caption'),latitude:doc('latitude'),longitude:doc('longitude')};
 })
+var stats=r.table('measures').filter(function (doc){return doc('measure').hasFields('statistics');}).map(function ( doc) {
+                          return
+                            doc.getField('measure').do(function (oo){return oo.do(function (dd){return dd.merge({idStation:doc('id'),latitude:doc('latitude').coerceTo('number'),longitude:doc('longitude').coerceTo('number')})})})
+                          ;
+                        }).concatMap(function (comp){
+  return comp.pluck('statistics','idStation','component_caption','latitude','longitude').coerceTo('array');
+          });
+stats.coerceTo('array').map(function(forId){return forId.merge({id:forId('idStation').add(' - ').add(forId('component_caption'))});}).limit(10);
