@@ -175,3 +175,5 @@ par pays
 r.table('stats').coerceTo('array')('con').eqJoin("id", r.table("stations"))('right').map(function (po){return po.merge({station_european_code:po('station_european_code').coerceTo('binary').slice(0,2).coerceTo('string')})}).group('station_european_code').count()
 compte par anneee pour NO2
 r.table('stats').coerceTo('array').filter(function (pomo){ return pomo('con')('component_code').eq('38');})('st').group('@Year').count()
+compte sur tous les NO par caption
+r.table('stats').coerceTo('array').filter(function (pomo){ return pomo('con')('component_code').eq('38');})('con').group('component_caption').count()
