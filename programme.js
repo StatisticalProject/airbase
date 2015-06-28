@@ -189,6 +189,8 @@ sauvegarde dans une base
 
 r.db('test').tableCreate('meanStatistics');
 r.table('meanStatistics').insert(extra)
+avec un index sur les points
+r.table('meanStatistics').indexCreate('point', {multi: true, geo: true})
 
 vrac
 var tryo=r.table('stats').coerceTo('array').filter(function (pomo){ return pomo('con')('component_code').eq('38');}).map(function (yui){return yui('st').merge(yui('con'));}).filter(function(fre){return fre.hasFields('@Year')&&fre('@Year').eq('2005')}).concatMap(function (values){return values('statistics_average_group').merge(values.without('statistics_average_group'));}).filter(function (prim){ return prim('@value').eq('day')}).map(function (set){return set('statistic_set').merge(set.without('statistic_set'));}).concatMap(function (res){ return res('statistic_result').merge(res.without('statistic_result'));}).filter( function (meaner){return meaner('statistic_shortname').eq('Mean')});
