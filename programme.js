@@ -168,6 +168,7 @@ stats.coerceTo('array').map(function(forId){return forId.merge({id:forId('idStat
 
 Map reduce compte les mesures par type
 r.table('stats').coerceTo('array')('con').group('component_caption').map( function (t){return 1;}).reduce(function (a,b){return a.add(b);})
+r.table('stats').coerceTo('array')('con').group('component_code').count()
 compte les mesures par stations
 r.table('stats').coerceTo('array')('con').eqJoin("id", r.table("stations"))('right').group('station_european_code').count();
 par pays
