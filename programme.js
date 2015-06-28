@@ -185,6 +185,11 @@ var tryo=r.table('stats').coerceTo('array').filter(function (pomo){ return pomo(
 var extra=tryo.map(function (max){ return {point:r.point(max('longitude').coerceTo('number'),max('latitude').coerceTo('number')),mean:max('statistic_value').coerceTo('number')};}).sample(10);
 extra.concatMap(function (left){return extra.map(function (right){return r.distance(left('point'),right('point'),{unit: 'km'})})}).max()
 
+sauvegarde dans une base
+
+r.db('test').tableCreate('meanStatistics');
+r.table('meanStatistics').insert(tryo)
+
 vrac
 var tryo=r.table('stats').coerceTo('array').filter(function (pomo){ return pomo('con')('component_code').eq('38');}).map(function (yui){return yui('st').merge(yui('con'));}).filter(function(fre){return fre.hasFields('@Year')&&fre('@Year').eq('2005')}).concatMap(function (values){return values('statistics_average_group').merge(values.without('statistics_average_group'));}).filter(function (prim){ return prim('@value').eq('day')}).map(function (set){return set('statistic_set').merge(set.without('statistic_set'));}).concatMap(function (res){ return res('statistic_result').merge(res.without('statistic_result'));}).filter( function (meaner){return meaner('statistic_shortname').eq('Mean')});
 tryo.map(function (max){ return {point:r.point(max('longitude').coerceTo('number'),max('latitude').coerceTo('number')),mean:max('statistic_value').coerceTo('number')};})    
