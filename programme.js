@@ -192,6 +192,21 @@ r.table('meanStatistics').insert(extra)
 avec un index sur les points
 r.table('meanStatistics').indexCreate('point', {multi: true, geo: true})
 
+recherche de distance
+var dist=200;
+var maxdis=dist*1.2;
+var mindis=dist*0.8;
+var select=r.table('meanStatistics').sample(200).concatMap(function (addr){ 
+  return  r.table('meanStatistics').getIntersecting(r.circle(addr('point'), maxdis,{unit:'km'}),
+    {index: 'point'}).map(function (gogo){return gogo.merge({orig:addr});});}
+  );
+
+select.map(function (group){
+  var distance=r.distance(group('orig')('point'),group('point'),{unit:'km'});
+  return group.merge({distance:distance});
+}).filter(function (min) {return min('distance').ge(mindis);})
+
+
 vrac
 var tryo=r.table('stats').coerceTo('array').filter(function (pomo){ return pomo('con')('component_code').eq('38');}).map(function (yui){return yui('st').merge(yui('con'));}).filter(function(fre){return fre.hasFields('@Year')&&fre('@Year').eq('2005')}).concatMap(function (values){return values('statistics_average_group').merge(values.without('statistics_average_group'));}).filter(function (prim){ return prim('@value').eq('day')}).map(function (set){return set('statistic_set').merge(set.without('statistic_set'));}).concatMap(function (res){ return res('statistic_result').merge(res.without('statistic_result'));}).filter( function (meaner){return meaner('statistic_shortname').eq('Mean')});
 tryo.map(function (max){ return {point:r.point(max('longitude').coerceTo('number'),max('latitude').coerceTo('number')),mean:max('statistic_value').coerceTo('number')};})    
