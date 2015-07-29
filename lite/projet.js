@@ -26,13 +26,18 @@ function importData(){
 	exec(cmd, function(error, stdout, stderr) {
 	  console.log("Import Data "+error+" "+stderr+" "+stdout);
 	});
+	var exec = require('child_process').exec;
+	var cmd = 'rethinkdb import -f data/EE_meta.xml.json --table '+baseDb+'.origin --force';
+	exec(cmd, function(error, stdout, stderr) {
+	  console.log("Import Data "+error+" "+stderr+" "+stdout);
+	});
 	insertPays();
 }
 
 console.log("Création de la base");
 r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
     if (err) throw err;
-	r.dbDrop(baseDb).run(conn,callbackNoError);
+	//r.dbDrop(baseDb).run(conn,callbackNoError);
  	var containsDb=r.dbCreate(baseDb).run(conn,callbackNoError);
 	console.log(containsDb);
 	createTable();
