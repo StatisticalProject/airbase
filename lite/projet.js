@@ -28,7 +28,6 @@ r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
 	r.dbDrop(baseDb).run(conn,callbackNoError);
  	var containsDb=r.dbCreate(baseDb).run(conn,callbackNoError);
 	console.log(containsDb);
-	setTimeout(importData,2000);
 	
 });
 
@@ -36,16 +35,21 @@ r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
 console.log("Création des Tables");
 r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
     if (err) throw err;
+	r.db(baseDb).tableDrop('origin').run(conn,callbackNoError);
+	
  	r.db(baseDb).tableDrop('countries').run(conn,callbackNoError);
 	r.db(baseDb).tableDrop('stations').run(conn,callbackNoError);
 	r.db(baseDb).tableDrop('measures').run(conn,callbackNoError);
 
+	r.db(baseDb).tableCreate('origin').run(conn,callbackNoError);
+	
 	r.db(baseDb).tableCreate('countries').run(conn,callbackNoError);
 	r.db(baseDb).tableCreate('stations').run(conn,callbackNoError);
 	r.db(baseDb).tableCreate('measures').run(conn,callbackNoError);
 
 	console.log(r.db(baseDb).tableList().run(conn,callbackNoError));
 });
+importData());
 
 console.log("Insertion des pays");
 r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
