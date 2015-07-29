@@ -15,6 +15,12 @@ function importData(){
 	exec(cmd, function(error, stdout, stderr) {
 	  console.log("Import Data "+error+" "+stderr+" "+stdout);
 	});
+	console.log("Import des données");
+	var exec = require('child_process').exec;
+	var cmd = 'rethinkdb import -f data/EE_meta.xml.json --table '+baseDb+'.origin --force';
+	exec(cmd, function(error, stdout, stderr) {
+	  console.log("Import Data "+error+" "+stderr+" "+stdout);
+	});
 	var exec = require('child_process').exec;
 	var cmd = 'rethinkdb import -f data/IS_meta.xml.json --table '+baseDb+'.origin --force';
 	exec(cmd, function(error, stdout, stderr) {
@@ -37,21 +43,22 @@ function createTable(){
  console.log("Création des Tables");
  r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
     if (err) throw err;
-	r.db(baseDb).tableDrop('origin').run(conn,callbackNoError);
+	//r.db(baseDb).tableDrop('origin').run(conn,callbackNoError);
 	
  	r.db(baseDb).tableDrop('countries').run(conn,callbackNoError);
 	r.db(baseDb).tableDrop('stations').run(conn,callbackNoError);
 	r.db(baseDb).tableDrop('measures').run(conn,callbackNoError);
 
-	r.db(baseDb).tableCreate('origin').run(conn,callbackNoError);
+	//r.db(baseDb).tableCreate('origin').run(conn,callbackNoError);
 	
 	r.db(baseDb).tableCreate('countries').run(conn,callbackNoError);
 	r.db(baseDb).tableCreate('stations').run(conn,callbackNoError);
 	r.db(baseDb).tableCreate('measures').run(conn,callbackNoError);
 
 	console.log(r.db(baseDb).tableList().run(conn,callbackNoError));
+	importData();
  });
- importData();
+ 
 }
 
 function insertPays(){
