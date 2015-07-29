@@ -124,6 +124,6 @@ r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
 	var measures=arrayMeasure.union(objectMeasure).concatMap(function (doc){return doc;});
 	//On sauvegarde dans la table des mesures
 	var table=r.db(baseDb).table('measures');
-	console.log(table.insert(measures,{conflict:'replace'}.run(conn,callbackNoError));
+	console.log(table.insert(measures,{conflict:'replace'}).run(conn,callbackNoError));
 
 });  
