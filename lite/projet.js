@@ -40,7 +40,7 @@ r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
 	r.db(baseDb).tableCreate('stations').run(conn,callbackNoError);
 	r.db(baseDb).tableCreate('measures').run(conn,callbackNoError);
 
-	console.log(r.db(baseDb).tableList()).run(conn,callbackNoError);
+	console.log(r.db(baseDb).tableList().run(conn,callbackNoError));
 });
 
 console.log("Insertion des pays");
