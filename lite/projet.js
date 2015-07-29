@@ -81,7 +81,7 @@ r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
 console.log("Insertion des mesures");
 r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
     if (err) throw err;
-	var stations= db(baseDb).table('origin')('airbase')('country')('station') ;
+	var stations= r.db(baseDb).table('origin')('airbase')('country')('station') ;
 	// Première partie : les tableaux de mesure
 	var arrayMeasure=stations.map( function (station){
 	  return station.
