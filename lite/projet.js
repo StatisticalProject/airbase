@@ -20,6 +20,7 @@ function importData(){
 	exec(cmd, function(error, stdout, stderr) {
 	  console.log("Import Data "+error+" "+stderr+" "+stdout);
 	});
+	insertPays();
 }
 
 console.log("Création de la base");
@@ -28,12 +29,13 @@ r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
 	r.dbDrop(baseDb).run(conn,callbackNoError);
  	var containsDb=r.dbCreate(baseDb).run(conn,callbackNoError);
 	console.log(containsDb);
-	
+	createTable();
 });
 
+function createTable(){
 
-console.log("Création des Tables");
-r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
+ console.log("Création des Tables");
+ r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
     if (err) throw err;
 	r.db(baseDb).tableDrop('origin').run(conn,callbackNoError);
 	
@@ -48,24 +50,26 @@ r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
 	r.db(baseDb).tableCreate('measures').run(conn,callbackNoError);
 
 	console.log(r.db(baseDb).tableList().run(conn,callbackNoError));
-});
-importData());
+ });
+ importData();
+}
 
-console.log("Insertion des pays");
-r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
-    if (err) throw err;
-	//On récupère la description des pays
-	var countryList= r.db(baseDb).table('origin')('airbase')('country') ;
-	//On convertit le document
-	var countries= countryList.map(function ( doc) {
-	//Suppression de la partie station du document et ajout d’un attribut “id”
-	  return doc.without('station').merge({id: doc('country_iso_code')});
+function insertPays(){
+	console.log("Insertion des pays");
+	r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
+		if (err) throw err;
+		//On récupère la description des pays
+		var countryList= r.db(baseDb).table('origin')('airbase')('country') ;
+		//On convertit le document
+		var countries= countryList.map(function ( doc) {
+		//Suppression de la partie station du document et ajout d’un attribut “id”
+		  return doc.without('station').merge({id: doc('country_iso_code')});
+		});
+		//ajout dans la table countries
+		var table= r.db(baseDb).table('countries');
+		console.log(table.insert(countries,{conflict:'replace'}).run(conn,callbackNoError));
 	});
-	//ajout dans la table countries
-	var table= r.db(baseDb).table('countries');
-	console.log(table.insert(countries,{conflict:'replace'}).run(conn,callbackNoError));
-});
-
+}
 
 console.log("Insertion des stations");
 r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
