@@ -63,7 +63,7 @@ console.log("Insertion des stations");
 r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
     if (err) throw err;
 	//On liste chaque station de chaque pays de la base airbase
-	var stLt= r.db('airbase').table('origin')('airbase')('country')('station');
+	var stLt= r.db(baseDb).table('origin')('airbase')('country')('station');
 	//On concatene toutes les listes de station
 	var stations= stLt.concatMap(
 	function ( doc) {
@@ -73,8 +73,57 @@ r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
 	  return doc.merge({id:doc('@Id')});
 	});
 	//on sauvegarde dans la table stations
-	var table= r.db('airbase').table('stations') ;
+	var table= r.db(baseDb).table('stations') ;
 	console.log(table.insert(stations,{conflict:'replace'}).run(conn,callbackNoError));
 
 });
   
+console.log("Insertion des mesures");
+r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
+    if (err) throw err;
+	var stations= db(baseDb).table('origin')('airbase')('country')('station') ;
+	// Première partie : les tableaux de mesure
+	var arrayMeasure=stations.map( function (station){
+	  return station.
+		//filtre sur les tableaux et contenant une configuration de mesure
+	  filter(
+		function (doc){ 
+			 return doc.hasFields('measurement_configuration').
+		  and(doc('measurement_configuration').typeOf().eq('ARRAY'))}
+		
+		).//on concatène les mesures des stations
+		concatMap(function (element){
+			return element('measurement_configuration').map(
+			function (configM){
+			  //On récupère la mesure et on lui ajoute les informations de station
+			  //On ajoute un identifiant m »langeant id de stations 
+			  //et le nom de la composante
+			  return configM.merge(element.without('measurement_configuration')).
+				merge({id:element('@Id').add('-').add(configM('component_caption'))});
+			});
+		  });
+	  });
+	//Seconde partie: les mesures uniques
+	var objectMeasure=stations.map( function (station){
+	  //filtre les données avec mesure et qui ne sont pas des tableaux
+	  return station.filter(
+		function (doc){ 
+		  return doc.hasFields('measurement_configuration').and(doc('measurement_configuration').typeOf().eq('OBJECT'))
+		})// On transforme les documents
+		.map(
+		function (element){
+		  //On récupère la mesure et on lui ajoute les informations de station
+		  //On ajoute un identifiant mélangeant id de stations 
+		  //et le nom de la composante          
+			return element('measurement_configuration').
+			merge(element.without('measurement_configuration')).
+			merge({id:element('@Id').add('-').add(element('measurement_configuration')('component_caption'))});
+		});
+	});
+	  //On réalise l'union des deux séquences
+	var measures=arrayMeasure.union(objectMeasure).concatMap(function (doc){return doc;});
+	//On sauvegarde dans la table des mesures
+	var table=r.db(baseDb).table('measures');
+	console.log(table.insert(measures,{conflict:'replace'}.run(conn,callbackNoError));
+
+});  
